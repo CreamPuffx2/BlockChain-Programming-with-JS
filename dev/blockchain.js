@@ -29,4 +29,9 @@ Blockchain.prototype.createNewBlock = function(nonce, previousBlockHash, hash) {
   return newBlock;  // newBlock 반환
 }
 
+// 블록체인
+Blockchain.prototype.getLastBlock = function() {
+  return this.chain[this.chain.length - 1];
+}
+
 module.exports = Blockchain;  // 모듈 export 
