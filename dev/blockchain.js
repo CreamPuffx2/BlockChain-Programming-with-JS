@@ -15,7 +15,7 @@ class Blockchain {
 function Blockchain() {
   this.chain = [];  //  채굴한 모든 블록들을 체인으로 저장.
   this.pendingTransactions = [];  // 블록에 아직 저장되지 않은 모든 트랜잭션(미결 트랜잭션)들을 저장.
-  this.createNewBlock(100, '0', '0');
+  this.createNewBlock(100, '0', '0');  // 제네시스 블록. 어떤 임의의 값도 넘길 수 있지만, createNewBlock 메서드를 통해 새로운 블록들을 생성할 때, 적법한 매개변수들을 넘겨야 한다.
 }
 
 Blockchain.prototype.createNewBlock = function(nonce, previousBlockHash, hash) {
