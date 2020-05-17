@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/CreamPuffx2/BlockChain-Programming-with-JS/issues"
   },
-  "homepage": "https://github.com/CreamPuffx2/BlockChain-Programming-with-JS#readme"
+  "homepage": "https://github.com/CreamPuffx2/BlockChain-Programming-with-JS#readme",
+  "dependencies": {
+    "sha256": "^0.2.0"
+  }
 }

@@ -1,3 +1,5 @@
+const sha256 = require('sha256');
+
 /*
 class Blockchain {
   constructor() {
@@ -43,6 +45,13 @@ Blockchain.prototype.createNewTransaction = function(amount, sender, recipient) 
   };
   this.pendingTransactions.push(newTransaction);
   return this.getLastBlock()['index'] + 1;
+}
+
+// 블록을 입력받아 이 블록의 데이터를 고정된 길이의 문자열로 해싱  
+Blockchain.prototype.hashBlock = function(previousBlockHash, currentBlockData, nonce) {  
+  const dataAsString = previousBlockHash + nonce.toString() + JSON.stringify(currentBlockData);
+  const hash = sha256(dataAsString);
+  return hash;
 }
 
 module.exports = Blockchain;  // Blockchain 모듈 export 
