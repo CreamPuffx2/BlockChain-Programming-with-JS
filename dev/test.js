@@ -19,8 +19,8 @@ const currentBlockData = [
     recipient: 'AUSDF89ANSD9FNASD'
   }
 ];
-
-let result = bitcoin.proofOfWork(previousBlockHash, currentBlockData);
+const nonce = 27470;
+let result = bitcoin.hashBlock(previousBlockHash, currentBlockData, nonce);
 
 console.log(result);
 // console.log(bitcoin.chain[bitcoin.chain.length - 1]);
