@@ -1,0 +1,20 @@
+{
+  "name": "BlockChain-JS_MJDN",
+  "version": "1.0.0",
+  "description": "* blockchain.js : blockchain을 만들기 위한 코드 * test.js : blockchain을 테스트하기 위한 코드",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjdn0011/BlockChain-JS_MJDN.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mjdn0011/BlockChain-JS_MJDN/issues"
+  },
+  "homepage": "https://github.com/mjdn0011/BlockChain-JS_MJDN#readme"
+}
