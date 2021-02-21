@@ -45,7 +45,15 @@ class Blockchain {
 }
 ```
 
-#### 2) 
+#### 2) createNewBlock 메서드 구현
+- 새로운 블록을 생성하는 메서드
+
+##### (1) createNewBlock 메서드 정의
+```js
+Blockchain.prototype.createNewBlock = function (nonce, previousBlockHash, hash) {
+  
+}
+```
 
 ### 2. 블록체인과 상호작용할 수 있는 API
 API 서버를 통해 블록체인 데이터 구조에 내장된 모든 기능을 사용할 수 있음
