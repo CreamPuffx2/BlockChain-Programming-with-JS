@@ -23,4 +23,9 @@ Blockchain.prototype.createNewBlock = function (nonce, previousBlockHash, curren
   return newBlock;
 }
 
+/* 3) getLastBlock: 블록체인에서 가장 마지막 블록 반환 */
+Blockkchain.prototype.getLastBlock = function () {
+  return this.chain[this.chain.length - 1];
+}
+
 module.exports = Blockchain;
