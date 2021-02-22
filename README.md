@@ -45,10 +45,7 @@ class Blockchain {
 }
 ```
 
-#### (1) createNewBlock 메서드 구현
-- 새로운 블록을 생성하는 메서드
-
-#### (2) createNewBlock: 새로운 블록 생성
+#### (1) ★ `createNewBlock`: 새로운 블록 생성/채굴
 * index
 * timestamp
 * transactions
@@ -56,13 +53,19 @@ class Blockchain {
 * previousBlockHash
 * currentBlockHash
 
-##### (3) getLastBlock: 블록체인에서 가장 마지막 블록 반환
+#### (2) `getLastBlock`: 블록체인 가장 마지막 블록 반환
 
-##### (4) createNewTransaction: 새로운 트랜잭션 생성
+#### (3) ★ `createNewTransaction`: 새로운 트랜잭션 생성
+* **`amount`**: 해당 트랜잭션을 통해 송금하는 양
+* **`sender`**: 발송인 주소
+* **`recipient`**: 수신인 주소
 모든 트랜잭션 객체들은 **금액**, **발송인 주소**, **수신인 주소**를 가지고 있음
-* amount: 해당 트랜잭션을 통해 송금하는 양
-* sender: 발송인 주소
-* recipient: 수신인 주소
+> 새로운 트랜잭션이 생성될 때마다 트랜잭션들은 `newTransaction` 배열에 추가됨
+> 배열 안의 모든 트랜잭션들은 *아직* 확정된 것은 아님. 즉, 블록체인에 기록된 것은 아님
+> 새로운 블록이 생성될 때 블록체인에 기록됨
+> 이 모든 새로운 확정되지 않음 트랜잭션들은 **미결 트랜잭션**이며, 아직 검증되지 않은 상태
+> 이 트랜잭션들은 createNewBlock 메소드로 새로운 블록을 생성했을 때 검증되고, 확정되고, 블록체인에 기록됨
+> 새로운 블록이 채굴되었을 때(즉, 새로운 블록이 생성되었을 때) 모든 미결 트랜잭션이 블록체인 안에 기록되고, 확정되며, 영원히 변하지 않게 됨
 
 
 ### 2. 블록체인과 상호작용할 수 있는 API

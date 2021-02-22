@@ -17,7 +17,8 @@ Blockchain.prototype.createNewBlock = function (nonce, previousBlockHash, curren
     currentBlockHash: currentBlockHash, // 현재 블록의 데이터를 해싱한 값.
     // newTransactions를 hash 함수의 매개변수로 전달함. 트랜잭션들은 하나의 문자열로 압축되며 이것이 hash 값이 됨.    
   };
-  this.newTransactions = []; // newTransactions 초기화. 새로운 블록을 만들 때, 모든 새로운 트랜잭션들을 해당 블록에 추가하기 때문
+
+  this.pendingTransactions = []; // newTransactions 초기화. 새로운 블록을 만들 때, 모든 새로운 트랜잭션들을 해당 블록에 추가하기 때문
   this.chain.push(newBlock);
 
   return newBlock;
@@ -39,6 +40,5 @@ Blockchain.prototype.createNewTransaction = function (amount, sender, recipient)
   
   return this.getLastBlock()['index'] + 1; // 새로운 트랜잭션이 추가될 블록의 index 반환
 }
-
 
 module.exports = Blockchain;
