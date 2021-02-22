@@ -28,7 +28,7 @@
 * 블록체인 기능들을 추가하기 위한 다양한 메서드 구현 및 테스트
 * 작업증명 이해 및 블록체인을 위한 구현 메서드 학습
 
-#### 1) Blockchain 생성자 함수 구현
+### 1) Blockchain: 생성자 함수
 ```js
 // 생성자 함수
 function Blockchain () {
@@ -45,15 +45,25 @@ class Blockchain {
 }
 ```
 
-#### 2) createNewBlock 메서드 구현
+#### (1) createNewBlock 메서드 구현
 - 새로운 블록을 생성하는 메서드
 
-##### (1) createNewBlock 메서드 정의
-```js
-Blockchain.prototype.createNewBlock = function (nonce, previousBlockHash, hash) {
-  
-}
-```
+#### (2) createNewBlock: 새로운 블록 생성
+* index
+* timestamp
+* transactions
+* nonce
+* previousBlockHash
+* currentBlockHash
+
+##### (3) getLastBlock: 블록체인에서 가장 마지막 블록 반환
+
+##### (4) createNewTransaction: 새로운 트랜잭션 생성
+모든 트랜잭션 객체들은 **금액**, **발송인 주소**, **수신인 주소**를 가지고 있음
+* amount: 해당 트랜잭션을 통해 송금하는 양
+* sender: 발송인 주소
+* recipient: 수신인 주소
+
 
 ### 2. 블록체인과 상호작용할 수 있는 API
 API 서버를 통해 블록체인 데이터 구조에 내장된 모든 기능을 사용할 수 있음
