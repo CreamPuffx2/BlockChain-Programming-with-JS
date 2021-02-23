@@ -1,5 +1,7 @@
 /* blockchain을 만들기 위한 코드 */
 
+const sha256 = require('sha256');
+
 /* 1) 생성자 함수를 통해 Blockchain 구현 */
 function Blockchain () {
   this.chain = []; // 채굴한 블록들은 이 배열 안에 체인으로 저장 - [ block, block, block, ... ]
@@ -38,7 +40,15 @@ Blockchain.prototype.createNewTransaction = function (amount, sender, recipient)
   }
   this.pendingTransactions.push(newTransaction);
   
-  return this.getLastBlock()['index'] + 1; // 새로운 트랜잭션이 추가될 블록의 index 반환
+  return this.getLastBlock().index + 1; // 새로운 트랜잭션이 추가될 블록의 index 반환
+}
+
+/* 5) hashBlock: 데이터 해싱 */
+Blockchain.prototype.hashBlock = function (previousBlockHash, currentBlockData, nonce) {
+  const dataAsString = previousBlockHash + nonce.toString() + JSON.stringify(currentBlockData);
+  const hash = sha256(dataAsString);
+
+  return hash;
 }
 
 module.exports = Blockchain;

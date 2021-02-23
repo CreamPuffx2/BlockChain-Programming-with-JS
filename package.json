@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/mjdn0011/BlockChain-JS_MJDN/issues"
   },
-  "homepage": "https://github.com/mjdn0011/BlockChain-JS_MJDN#readme"
+  "homepage": "https://github.com/mjdn0011/BlockChain-JS_MJDN#readme",
+  "dependencies": {
+    "sha256": "^0.2.0"
+  }
 }
