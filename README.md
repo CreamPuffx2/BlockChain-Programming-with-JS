@@ -1,8 +1,6 @@
-## /dev
-* blockchain.js : blockchain을 만들기 위한 코드
-* test.js : blockchain을 테스트하기 위한 코드 
+* `blockchain.js` : blockchain을 만들기 위한 코드
+* `test#.js` : blockchain을 테스트하기 위한 코드 
 
-블록체인의 동작과 탈중앙화 네트워크
 탈중앙화 네트워크에서 호스팅되는 완전한 블록체인 프로토타입
 
 * 블록체인을 안전하게 만드는 작업증명(proof-of-work) 수행
@@ -12,13 +10,13 @@
 * 주소 / 트랜잭션 / 블록 데이터 검색
 
 ##### 블록체인의 데이터 구조
-* 증명작업(proof-of-work)
 * 새 블록 채굴(mining)
 * 트랜잭션 생성
+* 증명작업(proof-of-work)
 * 체인의 유효성 확인
 * 주소 데이터 검색 및 기타 기능
 
-### 1. 블록체인 구축
+## 1. 블록체인 구축
 * 생성자 함수를 사용하여 블록체인 데이터 구조를 생성
 * 프로토타입에 여러 메소드들을 추가하여 다양한 기능 추가
 * 블록체인에 새로운 블록들과 트랜잭션들을 생성하는 특정한 기능 추가
@@ -26,13 +24,13 @@
 
 * 작업증명 이해 및 블록체인을 위한 구현 메서드 학습
 
-### 1) `Blockchain` -> 생성자 함수를 사용하여 <u>블록체인 데이터 구조 생성</u>
+#### 1) `Blockchain`: 생성자 함수를 사용하여 <u>블록체인 데이터 구조 생성</u>
 
-#### (1) ★ `createNewBlock`: <u>새로운 블록</u> 생성(채굴) / 제네시스 블록 생성
+#### 2) `createNewBlock`: <u>새로운 블록</u> 생성(채굴) / 제네시스 블록 생성
 < Params >
-* nonce
 * previousBlockHash
 * currentBlockHash
+* nonce
 
 < Variables >
 * index
@@ -44,9 +42,9 @@
 
 > 제네시스 블록은 블록체인에서 최초의 블록을 의미
 
-#### (2) `getLastBlock`: 블록체인 가장 <u>마지막 블록</u> 반환
+#### 3) `getLastBlock`: 블록체인 가장 <u>마지막 블록</u> 반환
 
-#### (3) ★ `createNewTransaction`: <u>새 트랜잭션</u> 생성
+#### 4) `createNewTransaction`: <u>새 트랜잭션</u> 생성
 < Params >
 * **`amount`**: 해당 트랜잭션을 통해 송금하는 양
 * **`sender`**: 발송인 주소
@@ -59,7 +57,7 @@
 > 이 트랜잭션들은 createNewBlock 메소드로 새로운 블록을 생성했을 때 검증되고, 확정되고, 블록체인에 기록됨
 > 새로운 블록이 채굴되었을 때(즉, 새로운 블록이 생성되었을 때) 모든 미결 트랜잭션이 블록체인 안에 기록되고, 확정되며, 영원히 변하지 않게 됨
 
-#### (4) `hashBlock`: <u>데이터 해싱</u>
+#### 5) `hashBlock`: <u>데이터 해싱</u>
 < Params >
 * **`previousBlockHash`**
 * **`currentBlockData`**
@@ -70,7 +68,7 @@
 > 주어진 입력값에 대해 항상 동일한 출력값을 반환
 > https://passwordsgenerator.net/sha256-hash-generator/
 
-#### (5) `proofOfWork`: <u>작업증명(PoW)</u>
+#### 6) ★ `proofOfWork`: <u>작업증명(PoW)</u>
 < Params >
 * **`previousBlockHash`**
 * **`currentBlockData`**
@@ -85,10 +83,11 @@
 많은 에너지와 컴퓨팅 능력을 가지고 있어야 함.
 hash 값은 유효한 현재 블록 데이터(currentBlockData) 뿐만 아니라 유효한 과거의 블록 데이터(previousBlockData)도 가지고 있어야 함.
 이미 존재하는 블록을 다시 채굴하거나 생성하려 한다면, 해당 블록 다음에 오는 모든 블록들을 다시 채굴해야 함.
-> proofOfWork 메소드는 반복적으로 previousBlockData, currentBlockData, nonce 값을 원하는 조건에 맞는 해시값이 나올 때까지 nonce 값을 변경해가며 해시함.
+> `proofOfWork` 메소드는 반복적으로 `previousBlockData`, `currentBlockData`, `nonce` 값을 원하는 조건에 맞는 해시값이 나올 때까지 `nonce` 값을 변경해가며 해시함.
 
-### 2. 블록체인과 상호작용할 수 있는 API
-API 서버를 통해 블록체인 데이터 구조에 내장된 모든 기능을 사용할 수 있음
+## 2. API를 이용한 블록체인 액세스
+API 서버를 통해 블록체인 데이터 구조에 내장된 모든 기능 사용
+
 
 ### 3. 분산 네트워크 구축하는 방법
 여러 개의 서버가 실행되어 각각 별개의 노드로 동작하게 되는 것을 의미
