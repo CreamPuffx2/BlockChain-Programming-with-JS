@@ -6,10 +6,11 @@ const sha256 = require('sha256');
 function Blockchain () {
   this.chain = []; // 채굴한 블록들은 이 배열 안에 체인으로 저장 - [ block, block, block, ... ]
   this.pendingTransactions = []; // 미결 트랜잭션
+  this.createNewBlock(100, '0', '0'); // 제네시스 블록 생성(임의의 값)
 }
 
 /* 2) createNewBLock: 새로운 블록 생성 */
-Blockchain.prototype.createNewBlock = function (nonce, previousBlockHash, currentBlockHash) {
+Blockchain.prototype.createNewBlock = function (previousBlockHash, currentBlockHash, nonce) {
   const newBlock = { // newBlock 객체는 Blockchain 안의 새로운 블록이 됨
     index: this.chain.length + 1, // 블록 넘버(몇 번째 블록?)
     timestamp: Date.now(), // 블록 생성 시점
@@ -49,6 +50,19 @@ Blockchain.prototype.hashBlock = function (previousBlockHash, currentBlockData, 
   const hash = sha256(dataAsString);
 
   return hash;
+}
+
+/* 6) proofOfWork: 작업 증명 */
+Blockchain.prototype.proofOfWork = function (previousBlockHash, currentBlockData) {
+  let nonce = -1;
+  let hash = '';
+  do {
+    nonce += 1;
+    hash = this.hashBlock(previousBlockHash, currentBlockData, nonce);
+    console.log(hash);
+  } while (hash.substring(0, 4) !== '0000');
+
+  return nonce;
 }
 
 module.exports = Blockchain;

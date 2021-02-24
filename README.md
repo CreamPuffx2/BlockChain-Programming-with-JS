@@ -28,7 +28,13 @@
 
 ### 1) `Blockchain` -> 생성자 함수를 사용하여 <u>블록체인 데이터 구조 생성</u>
 
-#### (1) ★ `createNewBlock`: <u>새로운 블록</u> 생성/채굴
+#### (1) ★ `createNewBlock`: <u>새로운 블록</u> 생성(채굴) / 제네시스 블록 생성
+< Params >
+* nonce
+* previousBlockHash
+* currentBlockHash
+
+< Variables >
 * index
 * timestamp
 * transactions
@@ -36,9 +42,12 @@
 * previousBlockHash
 * currentBlockHash
 
+> 제네시스 블록은 블록체인에서 최초의 블록을 의미
+
 #### (2) `getLastBlock`: 블록체인 가장 <u>마지막 블록</u> 반환
 
 #### (3) ★ `createNewTransaction`: <u>새 트랜잭션</u> 생성
+< Params >
 * **`amount`**: 해당 트랜잭션을 통해 송금하는 양
 * **`sender`**: 발송인 주소
 * **`recipient`**: 수신인 주소
@@ -51,13 +60,32 @@
 > 새로운 블록이 채굴되었을 때(즉, 새로운 블록이 생성되었을 때) 모든 미결 트랜잭션이 블록체인 안에 기록되고, 확정되며, 영원히 변하지 않게 됨
 
 #### (4) `hashBlock`: <u>데이터 해싱</u>
+< Params >
+* **`previousBlockHash`**
+* **`currentBlockData`**
+* **`nonce`**
 블록을 입력 받아, 해당 블록의 데이터를 고정된 길이의 문자열로 해싱
 > SH256 해싱 함수
 > 임의의 문자열을 매개변수로 받아서 해당 문자열을 해싱한 후 고정된 길이의 해싱된 문자열을 반환
 > 주어진 입력값에 대해 항상 동일한 출력값을 반환
 > https://passwordsgenerator.net/sha256-hash-generator/
 
-
+#### (5) `proofOfWork`: <u>작업증명(PoW)</u>
+< Params >
+* **`previousBlockHash`**
+* **`currentBlockData`**
+블록체인들이 안전한 것은 **작업증명** 때문
+블록체인을 살펴보면 모든 블록체인은 사실 블록들의 리스트임
+하지만 아무 블록이나 생성되고, 체인에 추가되는 것은 아님
+적법하고, 올바른 트랜잭션들, 올바른 데이터를 갖고 있는 블록들이 체인에 추가됨
+수신자를 변조하거나, 내가 갖고 있는 코인 양을 속이거나..
+**proofOfWork 메소드는 특정한 해시값을 만들어야 함**
+(예를 들어, 4개의 0 값으로 시작하는 값)
+올바른 해시값을 생성하기 위해 hashBlock 메소드를 여러 번 수행해야 하고,
+많은 에너지와 컴퓨팅 능력을 가지고 있어야 함.
+hash 값은 유효한 현재 블록 데이터(currentBlockData) 뿐만 아니라 유효한 과거의 블록 데이터(previousBlockData)도 가지고 있어야 함.
+이미 존재하는 블록을 다시 채굴하거나 생성하려 한다면, 해당 블록 다음에 오는 모든 블록들을 다시 채굴해야 함.
+> proofOfWork 메소드는 반복적으로 previousBlockData, currentBlockData, nonce 값을 원하는 조건에 맞는 해시값이 나올 때까지 nonce 값을 변경해가며 해시함.
 
 ### 2. 블록체인과 상호작용할 수 있는 API
 API 서버를 통해 블록체인 데이터 구조에 내장된 모든 기능을 사용할 수 있음
