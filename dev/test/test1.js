@@ -1,7 +1,7 @@
 /* blockchain.js 를 테스트하기 위한 코드 */
 
 // import Blockchain from './blockchain'
-const Blockchain = require('./blockchain')
+const Blockchain = require('../blockchain')
 
 /* Honey Pot Coin */
 const HPC = new Blockchain();
