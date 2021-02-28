@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const Blockchain = require('./blockchain');
 
 const app = express();
+
 const bitcoin = new Blockchain();
 
 // JSON 형태 요청 Parsing
@@ -17,9 +18,13 @@ app.get('/blockchain', function(req, res) {
 
 // 새로운 트랜잭션 생성
 app.post('/transaction', function(req, res) {
-  console.log(req.body);
+  const { amount, sender, recipient } = req.body;
+  
+  const blockIndex = bitcoin.createNewTransaction(amount, sender, recipient);
 
-  res.send(`The amount of the transaction is ${req.body.amount} bitcoin.`);
+  res.json({
+    note: `Transaction will be added in block ${blockIndex}.`
+  });
 });
 
 // PoW 메소드 사용 - 새 블록 채굴
