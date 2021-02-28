@@ -15,10 +15,10 @@ Blockchain.prototype.createNewBlock = function (previousBlockHash, currentBlockH
     index: this.chain.length + 1, // 블록 넘버(몇 번째 블록?)
     timestamp: Date.now(), // 블록 생성 시점
     transactions: this.pendingTransactions, // 미결 트랜잭션 검증, 확정, 기록
-    nonce: nonce, // proofOfWork 메서드 결과값. 작업증명을 통해 적법하게 새로운 블록을 만들었다는 증거
     previousBlockHash: previousBlockHash, // 이전 블록의 데이터를 해싱한 값.
     currentBlockHash: currentBlockHash, // 현재 블록의 데이터를 해싱한 값.
-    // newTransactions를 hash 함수의 매개변수로 전달함. 트랜잭션들은 하나의 문자열로 압축되며 이것이 hash 값이 됨.    
+    // newTransactions를 hash 함수의 매개변수로 전달함. 트랜잭션들은 하나의 문자열로 압축되며 이것이 hash 값이 됨.
+    nonce: nonce, // proofOfWork 메서드 결과값. 작업증명을 통해 적법하게 새로운 블록을 만들었다는 증거
   };
 
   this.pendingTransactions = []; // newTransactions 초기화. 새로운 블록을 만들 때, 모든 새로운 트랜잭션들을 해당 블록에 추가하기 때문
