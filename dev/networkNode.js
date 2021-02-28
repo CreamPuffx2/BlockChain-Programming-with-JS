@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const Blockchain = require('./blockchain');
 
 const app = express();
